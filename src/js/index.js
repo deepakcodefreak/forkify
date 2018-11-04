@@ -1,10 +1,33 @@
+import Search from './models/Search';
 
-//https://www.food2fork.com/api/search
+const state = {};
 
-import Search from './models/Search'
+async function controlSearch(){
+    // get query from view
+        const query = 'pizza';
 
-const search  = new Search();
+     if(query){
+          
+        //new search object and add it to state
+            state.search  = new Search(query);
+        // make ui ready for results
+        
+        // made search for recipies
+            await state.search.getResults();
 
-search.getResults('pizza');
+        // display result on UI
+            console.log(state.search.result);
+
+     }   
+
+}
+
+
+document.querySelector('.search').addEventListener('submit', el => {
+    el.preventDefault();
+    calSearch();
+})
+
+
 
 
